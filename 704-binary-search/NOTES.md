@@ -1,0 +1,3 @@
+**Binary Search**
+​
+We know our input is sorted, so we can tell how far left or right we should explore at each element relative to target. By setting left and right bounds, we can find a midpoint pivot to compare to target at each iteration, and we continue looping as long as left and right don't overlap. If input at our midpoint equals target, we return midpoint. If input at midpoint is less than target, we know everything to the left of midpoint will also be less than target, so we can update left bound to start one element to the right of midpoint. If input at midpoint is greater than target, use similar logic for updating right bound. If we repeat for the entire input and pointers overlap, we know target isn't found and can return -1.
