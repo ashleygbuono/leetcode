@@ -1,0 +1,8 @@
+**Product of Array Except Self**
+​
+Constraints:
+- Linear time (O(n))
+- No division
+- Try for constant additional space (output storage doesn't count towards space allocation)
+​
+Visually, we can tell that at any element in our input, the exclusive product will be the product of all elements to its left added to the product of all elements to its right. While a naive approach would have prefix and suffix arrays store the leftmost and rightmost products at each index and then multiply the two, we can do the same using a single output array and making two passes on our input to calculate products accordingly. Since we know there are no items to left of first element and to right of last element, we can init pre and suffix variables with 1 default value. For first pass (setting leftmost product), we set that index of our output to our prefix. We then multiply prefix by current input element, which will pre-emptively update our new leftmost product before we iterate to the next element in input. For second pass, we're finding the rightmost products and updating relative to the left products already stored in our output. We're also iterating from right to left, to keep our values consistent. At each index of our output, we multiply by our suffix (rightmost product at that point, exclusive). We then multiply our suffix by current element in our input iteration, pre-emptively updating rightmost product before iterating to the next input element. We return our output array once both passes are complete.
