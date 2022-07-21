@@ -3,17 +3,17 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    if (s.length < 2) return false;
-    
-    let stack = [];
-    let parens = {"}": "{", ")": "(", "]": "["};
+    const charMap = {
+        "(": ")",
+        "{": "}",
+        "[": "]"
+    }
+    const stack = [];
     
     for (const char of s) {
-        if (!parens[char]) {
-            stack.push(char);
-        } else if (stack.pop() !== parens[char]){
-            return false;
-        }
+        if (charMap[char]) stack.push(charMap[char]);
+        else if (stack.length > 0 && stack[stack.length - 1] === char) stack.pop();
+        else return false;
     }
     return stack.length === 0;
 };
